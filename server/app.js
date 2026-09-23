@@ -1,14 +1,15 @@
 const express = require("express")
-
+const connectDB = require("./config/db")
+const dotenv = require("dotenv")
+const courseRoute = require("./routes/courseRoutes")
+const authRoute = require("./routes/authRoute")
 const app = express()
+app.use(express.json())
+dotenv.config()
 
-
-app.get("/welcome",(req,res)=>{
-    res.send("Welcome back")
-})
-
-app.listen(3000,()=>{
-    console.log("listening to the port ")
-})
-
-
+app.use("/api/courses",courseRoute)
+app.use("/api/auth",authRoute)
+connectDB()
+app.listen(3000, ()=>{
+    console.log("Listening to the PORT....")
+})   
