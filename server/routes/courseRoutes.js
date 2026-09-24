@@ -6,7 +6,7 @@ const courseRoute = express.Router()
 
 courseRoute.get("/",getCourses)
 
-courseRoute.post("/", protect, authorize('instructor', 'student'), createCourse)
+courseRoute.post("/", protect, authorize('instructor', 'admin'), createCourse)
 
 
 courseRoute.get("/:id", getCourseById)
