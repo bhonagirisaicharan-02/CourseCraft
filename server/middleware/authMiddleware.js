@@ -14,6 +14,8 @@ const protect = async (req, res, next) => {
         });
     }
 
+    console.log("hello..")
+    try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
     req.user = await User.findById(decoded.id);
@@ -25,10 +27,13 @@ const protect = async (req, res, next) => {
     }
 
     next();
+    } catch (error) {
+        return res.status(401).json({ message: 'Your session is invalid or has expired. Please sign in again.' });
+    }
   
 };
 
-// allowedRoles = []
+// allowedRoles = ["admin", "trainer"]
 const authorize = (...allowedRoles) => {
     return (req, res, next) => {
         if (!req.user || !allowedRoles.includes(req.user.role)) {

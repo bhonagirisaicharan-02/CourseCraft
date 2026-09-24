@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 export default function Navbar({ token, onLogout }) {
   return <header className="navbar">
-    <Link className="brand" to="/">learnly<span>.</span></Link>
+    <Link className="brand" to="/">CourseCraft<span>.</span></Link>
     <nav className="nav-links" aria-label="Main navigation">
       <NavLink to="/">Home</NavLink>
       <NavLink to="/courses">Courses</NavLink>
